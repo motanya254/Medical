@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5 mb-5">
+
+    {# about section #}
+    <div class="section">
+        <h1 class="text-center mb-3">
+            <i class="bi bi-hospital text-success"></i>
+            About Dagoretti South Health Facility
+        </h1>
+
+        <p class="text-center mb-4">
+            Making healthcare easier and convenient to access for Dagoretti South residents
+        </p>
+
+        <p>
+            The Dagoretti South Health Facility Finder is a simple, user-friendly tool created to help residents locate the nearest hospitals, clinics, dispensaries and maternity centers quickly and accurately. Many people struggle to find reliable facility information, especially in emergencies. This app solves the problem by centralizing verified health facility data into one clear, easy-to-navigate space.
+        </p>
+    </div>
+
+    {# mission and vision #}
+    <div class="section mt-4">
+        <h2 class="text-center mb-4">
+            <i class="bi bi-heart-pulse-fill text-center"></i>
+        </h2>
+
+        <div class="row">
+
+            {# vision box #}
+            <div class="col-md-6 mb-4">
+                <div class="p-3 rounded shadow-sm" style="background:#e7f9ee">
+                    <h4><i class="bi bi-eye-fill"></i> Vision</h4>
+                    <p>
+                        A well-informed community where every resident can access the right healthcare service
+                        at the right time without confusion or delay.
+                    </p>
+                </div>
+            </div>
+
+            {# mission box #}
+            <div class="col-md-6 mb-4">
+                <div class="p-3 rounded shadow-sm" style="background:#e7f9ee">
+                    <h4><i class="bi bi-bullseye"></i> Mission</h4>
+                    <p>
+                        Our mission is to bring health access closer to the community, support public awareness,
+                        and empower residents of Dagoretti South to connect with the right facility at the right time.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    {# team section #}
+    <div class="section mt-5">
+        <h2 class="text-center mb-4">
+            <i class="bi bi-people-fill text-success"></i>
+        </h2>
+
+        <p class="text-center mb-4 text-muted">
+            Meet the team behind Dagoretti South Health Facility Finder
+        </p>
+
+        <div class="row justify-content-center">
+
+            {# team member 1 #}
+            <div class="col-md-3 mb-4">
+                <div class="card p-3 text-center shadow-sm">
+                    <img src="{% static 'img/shally.jpeg' %}" class="rounded-circle mx-auto"
+                         style="width: 120px; height: 120px; object-fit: cover;" alt="">
+                    <h5 class="mt-3">Project Developer</h5>
+                    <p class="text-muted">Builds, designs, and maintains the platform.</p>
+                </div>
+            </div>
+
+            {# team member 2 #}
+            <div class="col-md-3 mb-4">
+                <div class="card p-3 text-center shadow-sm">
+                    <img src="{% static 'img/velista.png' %}" class="rounded-circle mx-auto"
+                         style="width: 120px; height: 120px; object-fit: cover;" alt="">
+                    <h5 class="mt-3">Mapping & Data Lead</h5>
+                    <p class="text-muted">Collects, verifies, and updates facility data.</p>
+                </div>
+            </div>
+
+            {# team member 3 #}
+            <div class="col-md-3 mb-4">
+                <div class="card p-3 text-center shadow-sm">
+                    <img src="{% static 'img/jeddy.png' %}" class="rounded-circle mx-auto"
+                         style="width: 120px; height: 120px; object-fit: cover;" alt="">
+                    <h5 class="mt-3">Community Outreach</h5>
+                    <p class="text-muted">Engages residents and raises awareness.</p>
+                </div>
+            </div>
+
+            {# team member 4 #}
+            <div class="col-md-3 mb-4">
+                <div class="card p-3 text-center shadow-sm">
+                    <img src="{% static 'img/simy.jpeg' %}" class="rounded-circle mx-auto"
+                         style="width: 120px; height: 120px; object-fit: cover;" alt="">
+                    <h5 class="mt-3">Support & Monitoring</h5>
+                    <p class="text-muted">Ensures accurate listings and system reliability.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+
+{% endblock %}
+

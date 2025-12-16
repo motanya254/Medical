@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<!-- HERO SEARCH SECTION -->
+<section class="py-5" style="background:#f5f7fb;">
+    <div class="container text-center">
+        <h2 class="fw-bold mb-3 fade-in">Find Health Facilities in Dagoretti South</h2>
+        <p class="text-muted mb-4 fade-in">Search by facility name, service type, or location</p>
+
+        <form method="GET" action="{% url 'searchfacility' %}" class="row g-2 justify-content-center fade-in-up">
+            <div class="col-md-7">
+                <label>
+                    <input type="text" name="q" class="form-control form-control-lg shadow-sm"
+                           placeholder="Search e.g. maternity, Karen Hospital..."
+                           value="{{ request.GET.q }}">
+                </label>
+            </div>
+            <div class="col-md-2 d-grid">
+                <button class="btn btn-primary btn-lg shadow-sm" type="submit">Search</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+
+
+<!-- MAIN CONTENT -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+
+            <!-- FILTER SIDEBAR -->
+            <aside class="col-lg-3 mb-4">
+                <div class="p-4 shadow-sm rounded bg-white fade-in-up">
+                    <h5 class="fw-bold mb-4">Filter Results</h5>
+
+                    <form method="GET" action="{% url 'searchfacility' %}">
+                        <input type="hidden" name="q" value="{{ request.GET.q }}">
+
+                        <!-- SERVICE TYPE -->
+                        <label class="fw-semibold mb-1">Service Type</label>
+                        <label>
+                            <select class="form-select mb-4" name="service">
+                                <option value="">All</option>
+                                <option value="maternity" {% if request.GET.service == "maternity" %}selected{% endif %}>Maternity</option>
+                                <option value="vct" {% if request.GET.service == "vct" %}selected{% endif %}>VCT / HIV Testing</option>
+                                <option value="dental" {% if request.GET.service == "dental" %}selected{% endif %}>Dental</option>
+                                <option value="circumcision" {% if request.GET.service == "circumcision" %}selected{% endif %}>Circumcision</option>
+                                <option value="gynecology" {% if request.GET.service == "gynecology" %}selected{% endif %}>Gynecology</option>
+                                <option value="eye" {% if request.GET.service == "eye" %}selected{% endif %}>Eye Clinic</option>
+                            </select>
+                        </label>
+
+                        <!-- RATING -->
+                        <label class="fw-semibold mb-1">Minimum Rating</label>
+                        <label>
+                            <select class="form-select mb-4" name="rating">
+                                <option value="">Any</option>
+                                <option value="4" {% if request.GET.rating == "4" %}selected{% endif %}>4 ★ & Up</option>
+                                <option value="3" {% if request.GET.rating == "3" %}selected{% endif %}>3 ★ & Up</option>
+                            </select>
+                        </label>
+
+                        <button class="btn btn-primary w-100" type="submit">Apply Filters</button>
+                    </form>
+                </div>
+            </aside>
+
+
+
+            <!-- RESULTS -->
+            <div class="col-lg-9">
+
+                {% if facilities %}
+                <p class="fs-5 mb-4 fade-in-up">
+                    Showing <strong>{{ facilities|length }}</strong> matching facilities
+                </p>
+
+                {% for facility in facilities %}
+                <div class="p-4 mb-4 shadow-sm rounded bg-white facility-card fade-in-up d-flex">
+                    <img src="{% static 'img/404.svg.png' %}"
+                         class="me-4 rounded"
+                         style="width:140px; height:140px; object-fit:cover;" alt="">
+                    <div>
+                        <h4 class="fw-bold mb-1">{{ facility.name }}</h4>
+                        <p class="text-muted mb-1">{{ facility.location }}</p>
+                        <p><strong>Services:</strong> {{ facility.services }}</p>
+
+                        <a href="#" class="btn btn-outline-primary btn-sm mt-2">View Details</a>
+                    </div>
+                </div>
+                {% endfor %}
+
+                {% else %}
+                <!-- EMPTY RESULTS -->
+                <div class="text-center py-5 fade-in-up">
+                    <img src="{% static 'img/no-results.png' %}" width="180" class="mb-3" alt="">
+                    <h4 class="fw-bold">No Matching Facilities</h4>
+                    <p class="text-muted">Try a different search or adjust your filters.</p>
+                </div>
+                {% endif %}
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- SIMPLE ANIMATIONS -->
+<style>
+.fade-in {
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+.fade-in-up {
+    animation: fadeInUp 0.9s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.facility-card:hover {
+    transform: translateY(-4px);
+    transition: 0.3s;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+}
+</style>
+
+{% endblock %}

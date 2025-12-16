@@ -1,0 +1,35 @@
+{
+background-color: #f3f6ff; /* soft blue */
+font-family: 'segoe UI', sans-serif;
+
+}
+h1,h2,h3 {
+    color: #1a3d7c;
+}
+.container{
+    padding-top: 20px;
+}
+.section-by{
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 10px
+}
+.service-card {
+    transition: 0.3s ease;
+    background: #fff;
+}
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+.carousel-image {
+    height: 550px;
+    object-fit: cover;
+}
+
+.section-box {
+    padding: 25px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}

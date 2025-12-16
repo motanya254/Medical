@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="container my-5">
+
+    <!-- Back Button -->
+    <a href="{% url 'facilityl' %}" class="btn btn-outline-secondary mb-3">
+        <i class="bi bi-arrow-left"></i> Back to Facility List
+    </a>
+
+    <div class="row">
+
+        <!-- Left Column: Images + Details -->
+        <div class="col-lg-8">
+
+            <!-- Featured Image -->
+            <div class="card shadow-sm mb-4">
+                {% if facility.featured_image %}
+                    <img src="{{ facility.featured_image.url }}"
+                         class="card-img-top"
+                         style="height: 300px; object-fit: cover;" alt="">
+                {% else %}
+                    <img src="{% static 'img/default-facility.jpg' %}"
+                         class="card-img-top"
+                         style="height: 300px; object-fit: cover;" alt="">
+                {% endif %}
+            </div>
+
+            <!-- Facility Details -->
+            <div class="card shadow-sm p-4 mb-4">
+
+                <h2 class="fw-bold text-success mb-1">{{ facility.name }}</h2>
+
+                <p class="text-muted">
+                    <i class="bi bi-geo-alt"></i>
+                    {{ facility.address }} — {{ facility.ward }}
+                </p>
+
+                <!-- Type & Level -->
+                <p>
+                    <span class="badge bg-success">{{ facility.facility_type }}</span>
+                    {% if facility.level %}
+                        <span class="badge bg-primary">Level {{ facility.level }}</span>
+                    {% endif %}
+                    {% if facility.is_nhif %}
+                        <span class="badge bg-danger">SHA Accredited</span>
+                    {% endif %}
+                </p>
+
+                <!-- Opening Status -->
+                <p class="small {% if facility.is_open_now %}text-success{% else %}text-danger{% endif %}">
+                    {% if facility.is_open_now %}
+                        <i class="bi bi-check-circle"></i> Open Now
+                    {% else %}
+                        <i class="bi bi-x-circle"></i> Closed
+                    {% endif %}
+                </p>
+
+                <!-- Description -->
+                {% if facility.description %}
+                    <p class="mt-3">{{ facility.description }}</p>
+                {% endif %}
+
+            </div>
+
+            <!-- SERVICES -->
+            <div class="card shadow-sm p-4 mb-4">
+                <h4 class="fw-bold mb-3">
+                    <i class="bi bi-heart-pulse text-success"></i> Services Offered
+                </h4>
+
+                {% if facility.services.all %}
+                    <div class="d-flex flex-wrap">
+                        {% for service in facility.services.all %}
+                            <span class="badge bg-success bg-opacity-10 text-success border me-2 mb-2 px-3 py-2">
+                                {{ service.name }}
+                            </span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <p class="text-muted">No services listed.</p>
+                {% endif %}
+            </div>
+
+            <!-- GOOGLE MAP IFRAME -->
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-white fw-bold">
+                    <i class="bi bi-geo-alt text-success"></i> Location Map
+                </div>
+                <div class="card-body p-0">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d211408.31200698297!2d36.65752342253304!3d-1.2713930592819354!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sDAGORETTI%20SOUTH%20HEALTH%20FACILITIES!5e1!3m2!1sen!2ske!4v1765190175379!5m2!1sen!2ske" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- RIGHT COLUMN: Contact + Quick Info -->
+        <div class="col-lg-4">
+
+            <!-- Contact Info -->
+            <div class="card shadow-sm p-4 mb-4">
+                <h4 class="fw-bold mb-3">
+                    <i class="bi bi-telephone text-success"></i> Contact Information
+                </h4>
+
+                <p class="small">
+                    {% if facility.phone %}
+                        <i class="bi bi-telephone"></i> {{ facility.phone }} <br>
+                    {% endif %}
+                    {% if facility.email %}
+                        <i class="bi bi-envelope"></i> {{ facility.email }} <br>
+                    {% endif %}
+                    {% if facility.website %}
+                        <i class="bi bi-globe"></i>
+                        <a href="{{ facility.website }}" target="_blank">{{ facility.website }}</a><br>
+                    {% endif %}
+                    {% if not facility.phone and not facility.email and not facility.website %}
+                        <span class="text-muted">No contact information available.</span>
+                    {% endif %}
+                </p>
+            </div>
+
+            <!-- Quick Stats -->
+            <div class="card shadow-sm p-4">
+                <h4 class="fw-bold mb-3"><i class="bi bi-info-circle text-success"></i> Quick Info</h4>
+
+                <ul class="list-unstyled small">
+                    <li><strong>Facility Type:</strong> {{ facility.facility_type }}</li>
+                    {% if facility.level %}
+                    <li><strong>Level:</strong> {{ facility.level }}</li>
+                    {% endif %}
+                    <li><strong>Ward:</strong> {{ facility.ward }}</li>
+                    <li><strong>Address:</strong> {{ facility.address }}</li>
+                    {% if facility.is_SHA %}
+                    <li><strong>SHA:</strong> Accredited</li>
+                    {% endif %}
+                </ul>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

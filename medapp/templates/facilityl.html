@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<!-- Page Header -->
+<section class="py-5" style="background:#f5f7fb;">
+    <div class="container">
+        <h2 class="fw-bold">Dagoretti South Health Facilities</h2>
+        <p class="text-muted">
+            A complete overview of public and private health facilities within Dagoretti South.
+        </p>
+    </div>
+</section>
+
+<!-- GOOGLE MAP OVERVIEW -->
+<div class="container mb-4">
+    <div class="card shadow-sm">
+        <div class="card-body p-0">
+            <iframe
+            src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d211408.31200698297!2d36.65752342253304!3d-1.2713930592819354!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sDAGORETTI%20SOUTH%20HEALTH%20FACILITIES!5e1!3m2!1sen!2ske!4v1765190175379!5m2!1sen!2ske"
+            width="100%"
+            height="100%"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+        </div>
+    </div>
+</div>
+
+<!-- Search & Filters -->
+<div class="container my-4">
+    <form method="GET" class="row g-2">
+        <div class="col-md-4">
+            <label>
+                <input type="text" name="q" class="form-control" placeholder="Search facility…">
+            </label>
+        </div>
+
+        <div class="col-md-3">
+            <label>
+                <select name="type" class="form-control">
+                    <option value="">All Types</option>
+                    <option>Hospital</option>
+                    <option>Health Centre</option>
+                    <option>Dispensary</option>
+                    <option>Pharmacy</option>
+                    <option>Clinic</option>
+                    <option>Laboratory</option>
+                    <option>Maternity</option>
+                </select>
+            </label>
+        </div>
+
+        <div class="col-md-3">
+            <label>
+                <select name="level" class="form-control">
+                    <option value="">All Levels</option>
+                    <option>Level 2</option>
+                    <option>Level 3</option>
+                    <option>Level 4</option>
+                    <option>Level 5</option>
+                </select>
+            </label>
+        </div>
+
+        <div class="col-md-2">
+            <button class="btn btn-primary w-100">
+                <i class="bi bi-search"></i> Search
+            </button>
+        </div>
+    </form>
+</div>
+
+<!-- Facility Cards -->
+<div class="container my-4">
+    <div class="row">
+
+        {% if facilities %}
+            {% for facility in facilities %}
+                <div class="col-md-4 mb-4">
+                    <div class="card shadow-sm h-100">
+
+                        <!-- Image -->
+                        {% if facility.image %}
+                            <img src="{{ facility.image.url }}" class="card-img-top" height="180" style="object-fit: cover;" alt="">
+                        {% else %}
+                            <img src="{% static 'img/default-facility.jpg' %}" class="card-img-top" height="180" style="object-fit: cover;" alt="">
+                        {% endif %}
+
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold text-success">{{ facility.name }}</h5>
+                            <p class="text-muted small mb-2">
+                                <i class="bi bi-geo-alt"></i> {{ facility.location }}
+                            </p>
+
+                            <span class="badge bg-primary">{{ facility.facility_type }}</span>
+                            <span class="badge bg-secondary">Level {{ facility.level }}</span>
+
+                            <hr>
+
+                            <!-- Key Highlights -->
+                            <ul class="list-unstyled small">
+                                {% if facility.has_emergency %}
+                                <li><i class="bi bi-lightning-charge text-danger me-2"></i>Emergency Services</li>
+                                {% endif %}
+
+                                {% if facility.services.all %}
+                                    <li><i class="bi bi-heart-pulse me-2 text-success"></i>
+                                        {{ facility.services.count }} Services Available
+                                    </li>
+                                {% endif %}
+                            </ul>
+
+                            <!-- View More -->
+                            <a href="{% url 'facilityd' facility.id %}
+" class="btn btn-outline-success w-100 mt-2">
+                                View Details <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="col-12 text-center">
+                <p class="text-muted">No facilities found in Dagoretti South.</p>
+            </div>
+        {% endif %}
+
+    </div>
+</div>
+
+{% endblock %}

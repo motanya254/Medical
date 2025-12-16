@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<!-- Header Section -->
+<section class="py-5" style="background:#f5f7fb;">
+    <div class="container text-center">
+        <h2 class="fw-bold">Contact Us</h2>
+        <p class="text-muted">We’d love to hear from you. Reach out anytime.</p>
+    </div>
+</section>
+
+<div class="container my-5">
+
+    <div class="row g-4">
+
+        <!-- Contact Info -->
+        <div class="col-md-4">
+            <div class="p-4 shadow-sm rounded bg-white h-100">
+                <h5 class="fw-bold mb-3">Get in Touch</h5>
+
+                <p>
+                    <i class="bi bi-envelope-fill text-primary me-2"></i>
+                    info@dagorettisouthhealthfinder.org
+                </p>
+
+                <p>
+                    <i class="bi bi-telephone-fill text-success me-2"></i>
+                    +254 700 123 456
+                </p>
+
+                <p>
+                    <i class="bi bi-geo-alt-fill text-danger me-2"></i>
+                    Dagoretti South, Nairobi, Kenya
+                </p>
+
+                <hr>
+
+                <h6 class="fw-bold">Follow Us</h6>
+                <div class="d-flex gap-3 mt-3">
+                    <a href="#" class="text-primary fs-4"><i class="bi bi-facebook"></i></a>
+                    <a href="#" class="text-info fs-4"><i class="bi bi-twitter-x"></i></a>
+                    <a href="#" class="text-danger fs-4"><i class="bi bi-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="col-md-8">
+            <div class="p-4 shadow-sm rounded bg-white">
+
+                <h5 class="fw-bold mb-4">Send Us a Message</h5>
+
+                <form method="POST">
+                    {% csrf_token %}
+
+                    <div class="row g-3">
+
+                        <div class="col-md-6">
+                            <label class="form-label">Full Name</label>
+                            <label>
+                                <input type="text" name="name" class="form-control" placeholder="Your full name" required>
+                            </label>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Email Address</label>
+                            <label>
+                                <input type="email" name="email" class="form-control" placeholder="Your email" required>
+                            </label>
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label">Subject</label>
+                            <label>
+                                <input type="text" name="subject" class="form-control" placeholder="Subject" required>
+                            </label>
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label">Message</label>
+                            <label>
+                                <textarea name="message" class="form-control" rows="5" placeholder="Your message…" required></textarea>
+                            </label>
+                        </div>
+
+                        <div class="col-12 mt-3">
+                            <button class="btn btn-primary w-100 py-2">Send Message</button>
+                        </div>
+
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Map -->
+    <div class="mt-5">
+        <h5 class="fw-bold mb-3">Our Location</h5>
+        <div class="rounded overflow-hidden shadow-sm" style="height: 350px;">
+            <!-- Replace with real Google Map iframe -->
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d211406.1775220663!2d36.461611386718765!3d-1.2971967!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f1a47e6c8b1fb%3A0xb725be185a399668!2sWanyee%20Cross!5e1!3m2!1sen!2ske!4v1765191195854!5m2!1sen!2ske" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
