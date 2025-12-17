@@ -1,69 +1,42 @@
 {% extends "base.html" %}
-{% load static %}
 
 {% block content %}
-
-<style>
-    .error-page {
-        padding: 100px 0;
-        text-align: center;
-    }
-
-    .error-code {
-        font-size: 140px;
-        font-weight: 800;
-        color: #2d66f7;
-        line-height: 1;
-        animation: float 3s ease-in-out infinite;
-    }
-
-    @keyframes float {
-        0% { transform: translateY(0px); }
-        50% { transform: translateY(-15px); }
-        100% { transform: translateY(0px); }
-    }
-
-    .error-img {
-        max-width: 350px;
-        margin: 20px auto;
-        animation: fadeIn 2s ease-in-out;
-    }
-
-    @keyframes fadeIn {
-        from { opacity: 0; transform: scale(0.9); }
-        to { opacity: 1; transform: scale(1); }
-    }
-
-    .error-text {
-        font-size: 20px;
-        color: #555;
-        margin-top: 15px;
-    }
-
-    .back-btn {
-        margin-top: 30px;
-        padding: 12px 30px;
-        border-radius: 30px;
-        font-size: 16px;
-    }
-</style>
-
-<section class="error-page">
+<section class="py-5 text-center">
     <div class="container">
-        <h1 class="error-code">404</h1>
+        <!-- Animated 404 number -->
+        <h1 class="display-1 fw-bold text-danger fade-in-bounce">404</h1>
 
-        <!-- Optional illustration -->
-        <img src="{% static 'img/404.svg.png' %}" class="error-img" alt="Page Not Found Illustration">
+        <p class="lead mb-3 fade-in-up">Oops! Page not found.</p>
+        <p class="text-muted mb-4 fade-in-up">The page you are looking for does not exist or has been moved.</p>
 
-        <h3 class="mt-4">Oops! Page Not Found</h3>
-        <p class="error-text">
-            The page you're looking for might have been moved, deleted, or never existed.
-        </p>
-
-        <a href="/" class="btn btn-primary back-btn">
+        <a href="{% url 'home' %}" class="btn btn-primary btn-lg fade-in-up">
             Go Back Home
         </a>
     </div>
 </section>
 
+<style>
+/* Simple fade in */
+.fade-in-up {
+    animation: fadeInUp 0.9s ease-in-out;
+}
+
+.fade-in-bounce {
+    animation: bounceIn 1s ease;
+}
+
+/* Keyframes for fadeInUp */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Keyframes for bounceIn */
+@keyframes bounceIn {
+    0% { transform: scale(0.3); opacity: 0; }
+    50% { transform: scale(1.05); opacity: 1; }
+    70% { transform: scale(0.9); }
+    100% { transform: scale(1); }
+}
+</style>
 {% endblock %}

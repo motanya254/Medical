@@ -40,27 +40,26 @@
         <div class="carousel-inner">
 
             <div class="carousel-item active">
-                <img src="{% static 'img/hero.png' %}" class="d-block w-100" style="height:550px; object-fit:cover;" alt="">
+                <img src="{% static 'img/hero.png' %}" class="d-block w-100" style="height:500px; object-fit:cover; object-position: top;" alt="A modern hospital building exterior">
             </div>
 
             <div class="carousel-item">
-                <img src="{% static 'img/facility2.png' %}" class="d-block w-100" style="height:550px; object-fit:cover;" alt="">
+                <img src="{% static 'img/dc-1.png' %}" class="d-block w-100" style="height:500px; object-fit:cover;" alt="A vibrant street scene in Dagoretti South">
             </div>
 
             <div class="carousel-item">
-                <img src="{% static 'img/default-facility.jpg' %}" class="d-block w-100" style="height:550px; object-fit:cover;" alt="">
+                <img src="{% static 'img/dc-3.png' %}" class="d-block w-100" style="height:500px; object-fit:cover;" alt="Professional medical staff in a hospital setting">
             </div>
 
         </div>
-
-        <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon"></span>
-        </button>
 
         <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
             <span class="carousel-control-next-icon"></span>
         </button>
 
+        <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
     </div>
 </section>
 
@@ -79,7 +78,7 @@
             <!-- Hospital -->
             <div class="col-md-3">
                 <div class="service-card p-4 text-center shadow-sm rounded h-100">
-                    <img src="{% static 'img/casel.png' %}" width="70" class="mb-3" alt="">
+                    <img src="{% static 'img/casel.png' %}" width="80" class="mb-3" alt="Hospital icon">
                     <h5 class="fw-bold">Hospitals</h5>
                     <p class="small text-muted">
                         Fully equipped hospitals offering inpatient, outpatient, emergency and general healthcare.
@@ -90,7 +89,7 @@
             <!-- Clinics -->
             <div class="col-md-3">
                 <div class="service-card p-4 text-center shadow-sm rounded h-100">
-                    <img src="{% static 'img/maternity.jpg' %}" width="70" class="mb-3" alt="">
+                    <img src="{% static 'img/maternity.jpg' %}" width="80" class="mb-3" alt="Clinic icon">
                     <h5 class="fw-bold">Clinics & Medical Centres</h5>
                     <p class="small text-muted">
                         Local clinics providing consultations, diagnosis, and basic medical procedures.
@@ -101,7 +100,7 @@
             <!-- Pharmacies -->
             <div class="col-md-3">
                 <div class="service-card p-4 text-center shadow-sm rounded h-100">
-                    <img src="{% static 'img/pharmacy.webp' %}" width="70" class="mb-3" alt="">
+                    <img src="{% static 'img/pharmacy.webp' %}" width="80" class="mb-3" alt="Pharmacy icon">
                     <h5 class="fw-bold">Pharmacies</h5>
                     <p class="small text-muted">
                         Licensed pharmacies offering prescription medicine, OTC drugs, and health products.
@@ -112,7 +111,7 @@
             <!-- Labs -->
             <div class="col-md-3">
                 <div class="service-card p-4 text-center shadow-sm rounded h-100">
-                    <img src="{% static 'img/courasel2.jpg' %}" width="70" class="mb-3" alt="">
+                    <img src="{% static 'img/courasel2.jpg' %}" width="80" class="mb-3" alt="Laboratory icon">
                     <h5 class="fw-bold">Medical Laboratories</h5>
                     <p class="small text-muted">
                         Facilities offering blood tests, diagnostic lab services, and medical screenings.
@@ -123,7 +122,7 @@
             <!-- Maternal Care -->
             <div class="col-md-3">
                 <div class="service-card p-4 text-center shadow-sm rounded h-100">
-                    <img src="{% static 'img/courasel1.jpg' %}" width="70" class="mb-3" alt="">
+                    <img src="{% static 'img/courasel1.jpg' %}" width="80" class="mb-3" alt="Maternal care icon">
                     <h5 class="fw-bold">Maternal & Child Health</h5>
                     <p class="small text-muted">
                         Antenatal care, child immunization clinics, and family planning services.
@@ -134,7 +133,7 @@
             <!-- Dental -->
             <div class="col-md-3">
                 <div class="service-card p-4 text-center shadow-sm rounded h-100">
-                    <img src="{% static 'img/dental.jpg' %}" width="70" class="mb-3" alt="">
+                    <img src="{% static 'img/dental.jpg' %}" width="80" class="mb-3" alt="Dental clinic icon">
                     <h5 class="fw-bold">Dental Clinics</h5>
                     <p class="small text-muted">
                         Dental checkups, cleaning, extractions, and general oral health services.
@@ -145,7 +144,7 @@
             <!-- SHA -->
             <div class="col-md-3">
                 <div class="service-card p-4 text-center shadow-sm rounded h-100">
-                    <img src="{% static 'img/SHA.webp' %}" width="70" class="mb-3" alt="">
+                    <img src="{% static 'img/SHA.webp' %}" width="80" class="mb-3" alt="SHA accredited icon">
                     <h5 class="fw-bold">SHA Accredited</h5>
                     <p class="small text-muted">
                         Facilities registered under SHA for convenient and affordable treatment.
@@ -156,7 +155,7 @@
             <!-- Emergency -->
             <div class="col-md-3">
                 <div class="service-card p-4 text-center shadow-sm rounded h-100">
-                    <img src="{% static 'img/img3.jpg' %}" width="70" class="mb-3" alt="">
+                    <img src="{% static 'img/img3.jpg' %}" width="80" class="mb-3" alt="Emergency services icon">
                     <h5 class="fw-bold">Emergency Services</h5>
                     <p class="small text-muted">
                         Access emergency units, ambulance contacts, and 24/7 urgent care centers.
@@ -192,6 +191,3 @@
 </section>
 
 {% endblock %}
-
-
-
