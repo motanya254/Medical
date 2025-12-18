@@ -53,7 +53,14 @@ class Facility(models.Model):
     # Other info
     has_emergency = models.BooleanField(default=False)
     rating = models.FloatField(default=0)
-    image = models.ImageField(upload_to='facilities/', blank=True, null=True)
+
+    # Image (TEMPORARILY stored as text to avoid Pillow dependency)
+    image = models.CharField(
+        max_length=255,
+        blank=True,
+        null=True,
+        help_text="Image filename or URL (ImageField disabled for portability)"
+    )
 
     # Services
     services = models.ManyToManyField(Service, blank=True)
