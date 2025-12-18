@@ -48,6 +48,13 @@
                         <span class="badge bg-danger">SHA Accredited</span>
                     {% endif %}
                 </p>
+            {% if facility.opening_hours %}
+    <p class="mt-2">
+        <i class="bi bi-clock text-success"></i>
+        <strong>Opening Hours:</strong> {{ facility.opening_hours }}
+    </p>
+{% endif %}
+
 
                 <!-- Opening Status -->
                 <p class="small {% if facility.is_open_now %}text-success{% else %}text-danger{% endif %}">
