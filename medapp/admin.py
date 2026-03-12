@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Facility, Service
+from .models import Facility, Service, ContactMessage
 
 
 # --------------------
@@ -9,6 +9,16 @@ from .models import Facility, Service
 class ServiceAdmin(admin.ModelAdmin):
     list_display = ("name",)
     search_fields = ("name",)
+
+
+# --------------------
+# CONTACT MESSAGE ADMIN
+# --------------------
+@admin.register(ContactMessage)
+class ContactMessageAdmin(admin.ModelAdmin):
+    list_display = ("name", "email", "subject", "sent_at")
+    search_fields = ("name", "email", "subject", "message")
+    readonly_fields = ("sent_at",)
 
 
 # --------------------

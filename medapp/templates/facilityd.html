@@ -35,7 +35,7 @@
 
                 <p class="text-muted">
                     <i class="bi bi-geo-alt"></i>
-                    {{ facility.address }} — {{ facility.ward }}
+                    {{ facility.address }}
                 </p>
 
                 <!-- Type & Level -->
@@ -48,22 +48,13 @@
                         <span class="badge bg-danger">SHA Accredited</span>
                     {% endif %}
                 </p>
-            {% if facility.opening_hours %}
-    <p class="mt-2">
-        <i class="bi bi-clock text-success"></i>
-        <strong>Opening Hours:</strong> {{ facility.opening_hours }}
-    </p>
-{% endif %}
 
-
-                <!-- Opening Status -->
-                <p class="small {% if facility.is_open_now %}text-success{% else %}text-danger{% endif %}">
-                    {% if facility.is_open_now %}
-                        <i class="bi bi-check-circle"></i> Open Now
-                    {% else %}
-                        <i class="bi bi-x-circle"></i> Closed
-                    {% endif %}
-                </p>
+                {% if facility.formatted_opening_hours %}
+                    <p class="mt-2">
+                        <i class="bi bi-clock text-success"></i>
+                        <strong>Opening Hours:</strong> {{ facility.formatted_opening_hours }}
+                    </p>
+                {% endif %}
 
                 <!-- Description -->
                 {% if facility.description %}
@@ -138,7 +129,6 @@
                     {% if facility.level %}
                     <li><strong>Level:</strong> {{ facility.level }}</li>
                     {% endif %}
-                    <li><strong>Ward:</strong> {{ facility.ward }}</li>
                     <li><strong>Address:</strong> {{ facility.address }}</li>
                     {% if facility.is_SHA %}
                     <li><strong>SHA:</strong> Accredited</li>

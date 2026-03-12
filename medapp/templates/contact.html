@@ -39,9 +39,10 @@
 
                 <h6 class="fw-bold">Follow Us</h6>
                 <div class="d-flex gap-3 mt-3">
-                    <a href="#" class="text-primary fs-4"><i class="bi bi-facebook"></i></a>
-                    <a href="#" class="text-info fs-4"><i class="bi bi-twitter-x"></i></a>
-                    <a href="#" class="text-danger fs-4"><i class="bi bi-instagram"></i></a>
+                    <a href="https://www.facebook.com/DagoCare" target="_blank" class="text-primary fs-4"><i class="bi bi-facebook"></i></a>
+                    <a href="https://x.com/DagoCare" target="_blank" class="text-info fs-4"><i class="bi bi-twitter-x"></i></a>
+                    <a href="https://www.instagram.com/DagoCare" target="_blank" class="text-danger fs-4"><i class="bi bi-instagram"></i></a>
+                    <a href="https://www.youtube.com" target="_blank" class="text-danger fs-4"><i class="bi bi-youtube"></i></a>
                 </div>
             </div>
         </div>
@@ -55,34 +56,39 @@
                 <form method="POST">
                     {% csrf_token %}
 
+                    {# display feedback messages sent by the view #}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }}" role="alert">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+
                     <div class="row g-3">
 
                         <div class="col-md-6">
-                            <label class="form-label">Full Name</label>
-                            <label>
-                                <input type="text" name="name" class="form-control" placeholder="Your full name" required>
-                            </label>
+                            {{ form.name.label_tag }}
+                            {{ form.name }}
+                            {{ form.name.errors }}
                         </div>
 
                         <div class="col-md-6">
-                            <label class="form-label">Email Address</label>
-                            <label>
-                                <input type="email" name="email" class="form-control" placeholder="Your email" required>
-                            </label>
+                            {{ form.email.label_tag }}
+                            {{ form.email }}
+                            {{ form.email.errors }}
                         </div>
 
                         <div class="col-12">
-                            <label class="form-label">Subject</label>
-                            <label>
-                                <input type="text" name="subject" class="form-control" placeholder="Subject" required>
-                            </label>
+                            {{ form.subject.label_tag }}
+                            {{ form.subject }}
+                            {{ form.subject.errors }}
                         </div>
 
                         <div class="col-12">
-                            <label class="form-label">Message</label>
-                            <label>
-                                <textarea name="message" class="form-control" rows="5" placeholder="Your message…" required></textarea>
-                            </label>
+                            {{ form.message.label_tag }}
+                            {{ form.message }}
+                            {{ form.message.errors }}
                         </div>
 
                         <div class="col-12 mt-3">

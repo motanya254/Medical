@@ -7,13 +7,13 @@
 <section class="py-5" style="background:#f5f7fb;">
     <div class="container text-center">
         <h2 class="fw-bold mb-3 fade-in">Find Health Facilities in Dagoretti South</h2>
-        <p class="text-muted mb-4 fade-in">Search by facility name, service type, or location</p>
+        <p class="text-muted mb-4 fade-in">Search by name, location, facility type, opening hours, or service</p>
 
         <form method="GET" action="{% url 'searchfacility' %}" class="row g-2 justify-content-center fade-in-up">
             <div class="col-md-7">
                 <label>
                     <input type="text" name="q" class="form-control form-control-lg shadow-sm"
-                           placeholder="Search e.g. maternity, Karen Hospital..."
+                           placeholder="Search e.g. maternity, Hospital, 08:00..."
                            value="{{ request.GET.q }}">
                 </label>
             </div>
@@ -40,15 +40,45 @@
                         <!-- SERVICE TYPE -->
                         <label class="fw-semibold mb-1">Service Type</label>
                         <label>
-                            <select class="form-select mb-4" name="service">
+                            <select class="form-select mb-3" name="service">
                                 <option value="">All</option>
-                                <option value="maternity" {% if request.GET.service == "maternity" %}selected{% endif %}>Maternity</option>
-                                <option value="vct" {% if request.GET.service == "vct" %}selected{% endif %}>VCT / HIV Testing</option>
-                                <option value="dental" {% if request.GET.service == "dental" %}selected{% endif %}>Dental</option>
-                                <option value="circumcision" {% if request.GET.service == "circumcision" %}selected{% endif %}>Circumcision</option>
-                                <option value="gynecology" {% if request.GET.service == "gynecology" %}selected{% endif %}>Gynecology</option>
-                                <option value="eye" {% if request.GET.service == "eye" %}selected{% endif %}>Eye Clinic</option>
+                                {% for s in services_list %}
+                                    <option value="{{ s.name }}" {% if request.GET.service == s.name %}selected{% endif %}>{{ s.name }}</option>
+                                {% endfor %}
                             </select>
+                        </label>
+
+                        <!-- FACILITY TYPE -->
+                        <label class="fw-semibold mb-1">Facility Type</label>
+                        <label>
+                            <select class="form-select mb-3" name="type">
+                                <option value="">All</option>
+                                <option>Hospital</option>
+                                <option>Health Centre</option>
+                                <option>Dispensary</option>
+                                <option>Pharmacy</option>
+                                <option>Clinic</option>
+                                <option>Laboratory</option>
+                                <option>Maternity</option>
+                            </select>
+                        </label>
+
+                        <!-- LEVEL -->
+                        <label class="fw-semibold mb-1">Level</label>
+                        <label>
+                            <select class="form-select mb-3" name="level">
+                                <option value="">All</option>
+                                <option>Level 2</option>
+                                <option>Level 3</option>
+                                <option>Level 4</option>
+                                <option>Level 5</option>
+                            </select>
+                        </label>
+
+                        <!-- OPENING HOURS -->
+                        <label class="fw-semibold mb-1">Opening Hours Contains</label>
+                        <label>
+                            <input type="text" class="form-control mb-3" name="opening_hours" placeholder="e.g. 08:00" value="{{ request.GET.opening_hours }}">
                         </label>
 
                         <!-- RATING -->
@@ -82,9 +112,9 @@
                     <div>
                         <h4 class="fw-bold mb-1">{{ facility.name }}</h4>
                         <p class="text-muted mb-1">{{ facility.location }}</p>
-                        <p><strong>Services:</strong> {{ facility.services }}</p>
+                        <p><strong>Services:</strong> {{ facility.get_services_list }}</p>
 
-                        <a href="#" class="btn btn-outline-primary btn-sm mt-2">View Details</a>
+                        <a href="{% url 'facilityd' facility.id %}" class="btn btn-outline-primary btn-sm mt-2">View Details</a>
                     </div>
                 </div>
                 {% endfor %}
