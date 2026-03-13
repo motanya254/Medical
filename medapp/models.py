@@ -38,6 +38,7 @@ class ContactMessage(models.Model):
             # fall back to settings, expecting a list of (name, email) tuples
             recipient_list = [email for _, email in getattr(settings, 'ADMINS', [])]
 
+
         if not recipient_list:
             # nothing to send to
             return
